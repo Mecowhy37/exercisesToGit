@@ -1,0 +1,29 @@
+body {
+  display: grid;
+  place-content: center;
+  height: 97vh;
+}
+div {
+  display: flex;
+  flex-direction: column;
+  padding-left: 20%;
+}
+label:not(#input) {
+  margin-top: 20px;
+}
+label[for="input"] {
+  padding-left: 10px;
+}
+input {
+  width: 250px;
+}
+select {
+  margin-left: 53px;
+  margin-top: 20px;
+}
+button {
+  width: 258px;
+  margin-left: 53px;
+  margin-top: 20px;
+}
+/*  */
