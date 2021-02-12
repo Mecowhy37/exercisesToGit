@@ -12,7 +12,7 @@ function customersData() {
     }
     displayData();
     customersData();
-  }, 1500);
+  }, 1000);
 }
 
 let bars = [...document.querySelectorAll(".bar")];
