@@ -1,0 +1,24 @@
+body{
+    background-color: cadetblue;
+    display: grid;
+    height: 97vh;
+}
+div{
+    place-self: center;
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(0, 0, 0,0.2);
+    padding: 1.5em 3em;
+    height: min-content;
+    border-radius: 10px;
+    border: 1px solid whitesmoke;
+}
+
+a:not(a:first-of-type){
+    margin-top: 1em;
+}
+a{
+    color: whitesmoke;
+    font-family: 'cascadia code';
+    text-decoration: none;
+}
