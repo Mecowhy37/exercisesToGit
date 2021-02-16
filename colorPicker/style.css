@@ -15,7 +15,7 @@
   --tile: hsl(218, 28%, 17%);
   --shadow-1: hsl(220, 26%, 9%);
   --shadow-2: hsl(218, 28%, 19%);
-  --acccent: #ffffff;
+  --acccent: #f7951d;
 }
 body {
   height: 95vh;
