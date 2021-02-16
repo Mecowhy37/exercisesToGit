@@ -1,7 +1,7 @@
 const input = document.querySelector("#color");
 const circle = document.querySelector(".circle");
 window.onload = () => {
-  let value = localStorage.getItem("color");
+  let value = localStorage.getItem("color") ? localStorage.getItem("color") : "#f7951d";
   input.value = value;
   controller(value);
 };
