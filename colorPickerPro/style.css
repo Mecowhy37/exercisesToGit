@@ -1,0 +1,16 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: 0;
+}
+.body {
+  height: 95vh;
+  display: grid;
+}
+.output {
+  height: 100px;
+  width: 100px;
+}
+#picker {
+  place-self: center;
+}
