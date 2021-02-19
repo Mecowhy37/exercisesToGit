@@ -1,16 +1,313 @@
+@font-face {
+  font-family: "cascadia code";
+  src: url("./CascadiaCode.ttf");
+}
 * {
-  margin: 0;
   padding: 0;
-  box-sizing: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "cascadia code";
 }
-.body {
-  height: 95vh;
-  display: grid;
+/* :root {
+  --bg: hsl(0, 0%, 94%);
+  --tile: #fafafa;
+  --shadow-1: hsl(0, 0%, 80%);
+  --shadow-2: #ffffff;
+} */
+:root {
+  /* --bg: hsl(220, 26%, 13%); */
+  --bg: hsl(0, 0%, 85%);
+  --tile: hsl(218, 28%, 17%);
+  --shadow-1: hsl(220, 26%, 9%);
+  --shadow-2: hsl(218, 28%, 19%);
+  --acccent: #f7951d;
 }
-.output {
-  height: 100px;
+body {
+  height: 97vh;
+  position: relative;
+  background: var(--bg);
+  color: #b3b3b3;
+}
+.board {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  white-space: nowrap;
+  /* border-radius: 20px; */
+  padding: 1em;
+  /* background: var(--tile); */
+  height: min-content;
+}
+.picker {
+  width: 220px;
+  transform: translate(-50%, -50%) rotateX(0deg) rotateY(0deg);
+  /* box-shadow: 40px 40px 40px var(--shadow-1), 0 0 0 var(--shadow-2), 0 0 0 var(--shadow-1) inset, 2px 2px 2px var(--shadow-2) inset; */
+  /* transition: ease-out 0.3s; */
+  display: flex;
+  flex-direction: column;
+  z-index: 2;
+}
+.theme {
+  width: 500px;
+  height: 500px;
+  transform: translate(75px, -35%);
+  z-index: 1;
+  display: flex;
+  padding: 0;
+  /* background-color: salmon; */
+}
+.harmony {
+  height: 358px;
   width: 100px;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(1fr, 6);
+  padding: 0.2em 0em;
+  overflow: hidden;
 }
-#picker {
-  place-self: center;
+.tint {
+  width: 90px;
+  height: 65px;
+  border-radius: 0 15px 15px 0px;
+  align-self: center;
+  position: relative;
+  background-color: rgb(255, 255, 255);
+  transition: background-color 0.1s;
+}
+
+.tint:first-of-type {
+  border-radius: 5px 15px 15px 0px;
+  z-index: 1;
+}
+
+.tint:nth-child(2) {
+  margin-top: 5px;
+  z-index: 2;
+  transform: rotate(7deg);
+}
+
+.tint:nth-child(3) {
+  margin-top: 5px;
+  z-index: 3;
+  transform: rotate(18deg);
+}
+
+.tint:nth-child(4) {
+  transform: rotate(28deg);
+  margin-top: 5px;
+  z-index: 4;
+}
+.tint:nth-child(5) {
+  transform: rotate(44deg);
+  margin-top: 5px;
+  z-index: 5;
+}
+.set {
+  /* width: 157px; */
+  /* background-color: blue; */
+  padding: 1.2em 0 1em 2em;
+  z-index: 3;
+}
+#button {
+  border: 2px solid #ffffff00;
+  border-bottom: 5px solid rgba(255, 255, 255, 0);
+  border-top: 0;
+  cursor: pointer;
+  margin-left: 2em;
+}
+.on #button:hover {
+  border: 2px solid white;
+  border-bottom: 5px solid white;
+  border-top: 0;
+}
+.top {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 0.4em;
+  padding-bottom: 0.6em;
+}
+#switch {
+  width: 80px;
+  display: flex;
+  cursor: pointer;
+}
+.theme:not(.on) .set:hover #turn {
+  color: white;
+}
+.on #switch:hover > #turn {
+  color: rgb(168, 0, 0);
+}
+.theme:not(.on) #button,
+.theme:not(.on) .mid {
+  pointer-events: none;
+  cursor: none;
+}
+
+.mid {
+  width: min-content;
+  height: 22px;
+  border: 2px solid #ffffff00;
+  border-right: 5px solid #ffffff00;
+  border-left: 0;
+  z-index: 5;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+.show {
+  overflow: visible;
+}
+.on .mid:hover {
+  border: 2px solid white;
+  border-right: 5px solid white;
+  border-left: 0;
+}
+.dropdown {
+  background-color: rgba(217, 217, 217, 0.6);
+  z-index: 1;
+  margin-top: 2px;
+}
+.dropdown > p:hover {
+  color: white;
+}
+
+.saved {
+  width: 98%;
+  margin-left: 1%;
+  z-index: 0;
+  padding-top: 0.4em;
+  position: relative;
+}
+.group {
+  width: 100%;
+  margin-top: 0.4em;
+  aspect-ratio: 6/1;
+  border: 1px solid;
+  z-index: 1;
+  border-radius: 5px;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  overflow: hidden;
+}
+.col {
+  width: 100%;
+  height: 100%;
+}
+.fivecolors {
+  position: absolute;
+  /* background-color: blue; */
+  width: min-content;
+  height: 100%;
+}
+.overflow {
+  height: min-content;
+  width: min-content;
+  overflow: hidden;
+}
+.getcopy {
+  width: min-content;
+  transition: transform 0.2s;
+}
+.theme:not(.on) .getcopy {
+  transform: translateX(-100%);
+}
+.overflow:nth-child(1) {
+  margin-left: 350px;
+  margin-top: 27px;
+}
+
+.overflow:nth-child(2) {
+  margin-left: 340px;
+  margin-top: 85px;
+  transform: rotate(7deg);
+}
+.overflow:nth-child(3) {
+  margin-left: 300px;
+  margin-top: 110px;
+  transform: rotate(18deg);
+}
+.overflow:nth-child(4) {
+  margin-left: 235px;
+  margin-top: 80px;
+  transform: rotate(28deg);
+}
+.overflow:nth-child(5) {
+  margin-left: 140px;
+  margin-top: 80px;
+  transform: rotate(44deg);
+}
+
+/* .tint:not(.tint:first-child, .tint:last-child) {
+  background-color: red;
+} */
+
+/* .picker:hover {
+  box-shadow: 20px 20px 20px var(--shadow-1), 0 0 0 var(--shadow-2), 0 0 0 var(--shadow-1) inset, 2px 2px 2px var(--shadow-2) inset;
+} */
+label {
+  position: absolute;
+  display: flex;
+  white-space: nowrap;
+  width: min-content;
+  top: 10vw;
+  left: 10%;
+}
+label p {
+  transform: translate(-20px, -20px) rotate(18deg);
+}
+input[type="color"] {
+  -webkit-appearance: none;
+  position: relative;
+  width: 100px;
+  height: 20px;
+  margin-top: 15px;
+  transform: translateY(6px) rotate(18deg);
+  background-color: rgba(255, 255, 255, 0);
+  outline: none;
+  border: none;
+}
+input[type="color"]::-webkit-color-swatch {
+  border-radius: 5px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  box-sizing: border-box;
+  border: 4px solid transparent;
+}
+input[type="color"]::-webkit-color-swatch:hover {
+  border: 1px solid white;
+  border-left: 4px solid white;
+  border-right: 0;
+}
+
+.circle {
+  margin-top: 1em;
+  width: 100%;
+  aspect-ratio: 1/1;
+  background-color: var(--acccent);
+  box-shadow: 7px 4px 7px 7px rgba(0, 0, 0, 0.5) inset;
+  border-radius: 50%;
+}
+.numbers:hover {
+  color: white;
+  border: 2px solid white;
+  border-left: 5px solid white;
+  border-right: 0;
+  cursor: pointer;
+}
+
+.numbers:not(.numbers:last-child) {
+  margin-bottom: 0.3em;
+}
+#hex {
+  margin-top: 1em;
+}
+#rgb {
+  margin-left: 2em;
+}
+#hsl {
+  margin-left: 5.8em;
 }

@@ -1,11 +1,12 @@
+@font-face {
+  font-family: "cascadia code";
+  src: url("./CascadiaCode.ttf");
+}
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-}
-@font-face {
   font-family: "cascadia code";
-  src: url("./CascadiaCode.ttf");
 }
 /* :root {
   --bg: hsl(0, 0%, 94%);
