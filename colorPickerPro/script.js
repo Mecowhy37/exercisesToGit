@@ -6,7 +6,7 @@ const start = document.querySelector("#switch");
 const mid = document.querySelector(".mid");
 window.onload = () => {
   let value = localStorage.getItem("color") ? localStorage.getItem("color") : "#f7951d";
-  let turn = localStorage.getItem("turn");
+  let turn = localStorage.getItem("turn") ? localStorage.getItem("turn") : "on";
   input.value = value;
   controller(value);
   launcher(turn);
